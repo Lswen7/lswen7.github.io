@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人博客 & 知识库</title>
+    <title>Swen 的个人博客 & 知识库</title>
     <style>
         :root {
             --bg-color: #f8f9fa;
@@ -11,33 +11,107 @@
             --text-main: #212529;
             --text-muted: #6c757d;
             --accent-color: #2da44e;
+            --tag-bg: #e9ecef;
+            --border-color: #e9ecef;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            max-width: 800px;
+            max-width: 840px;
             margin: 0 auto;
             padding: 40px 20px;
             line-height: 1.7;
         }
 
+        /* 顶部导航与 Header */
         header {
-            margin-bottom: 50px;
-            border-bottom: 2px solid #e9ecef;
-            padding-bottom: 20px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 24px;
         }
 
-        h1 { font-size: 2rem; margin-bottom: 8px; font-weight: 700; }
-        .subtitle { color: var(--text-muted); font-size: 1.05rem; }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        h1 { 
+            font-size: 2.2rem; 
+            margin: 0; 
+            font-weight: 700; 
+        }
+
+        .subtitle { 
+            color: var(--text-muted); 
+            font-size: 1.05rem; 
+            margin-top: 8px;
+            margin-bottom: 16px;
+        }
+
+        /* 个人标签 & 社交按钮 */
+        .tech-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .tech-badge {
+            font-size: 0.8rem;
+            background: var(--tag-bg);
+            color: #495057;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            background: #ffffff;
+            border: 1px solid #ced4da;
+            padding: 6px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-link:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* 文章卡片 */
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
         .article-card {
             background: var(--card-bg);
-            padding: 24px;
+            padding: 24px 28px;
             border-radius: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.03);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -46,47 +120,124 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.08);
         }
 
-        .article-date { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; }
-        .article-title { font-size: 1.3rem; margin: 0 0 10px 0; }
-        .article-title a { color: var(--text-main); text-decoration: none; font-weight: 600; }
-        .article-title a:hover { color: var(--accent-color); }
-        .article-summary { color: #495057; font-size: 0.98rem; }
+        .article-meta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .article-tag {
+            background: #e6f4ea;
+            color: var(--accent-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .article-title { 
+            font-size: 1.35rem; 
+            margin: 0 0 10px 0; 
+        }
+
+        .article-title a { 
+            color: var(--text-main); 
+            text-decoration: none; 
+            font-weight: 600; 
+        }
+
+        .article-title a:hover { 
+            color: var(--accent-color); 
+        }
+
+        .article-summary { 
+            color: #495057; 
+            font-size: 0.98rem; 
+            margin: 0;
+        }
 
         footer {
             margin-top: 60px;
             text-align: center;
             font-size: 0.85rem;
             color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>👋 嗨，我是 [Swen]</h1>
-        <p class="subtitle">记录技术、思考与折腾 | 独立博客</p>
+        <div class="header-top">
+            <h1>👋 嗨，我是 Swen</h1>
+            <div class="nav-links">
+                <a href="https://github.com/Lswen7" target="_blank" class="btn-link">💻 GitHub</a>
+                <a href="https://github.com/Lswen7/My-Awesome-Stars" target="_blank" class="btn-link">⭐ 开源收藏</a>
+            </div>
+        </div>
+        
+        <p class="subtitle">专注于 .NET / C# 开发 | 记录技术、思考与折腾 | 独立博客</p>
+
+        <!-- 技能标签 -->
+        <div class="tech-tags">
+            <span class="tech-badge">C#</span>
+            <span class="tech-badge">.NET Core</span>
+            <span class="tech-badge">WPF</span>
+            <span class="tech-badge">WinForms</span>
+            <span class="tech-badge">SQL</span>
+            <span class="tech-badge">开源工具</span>
+        </div>
     </header>
 
     <main>
-        <!-- 文章列表 1 -->
+        <div class="section-title">📌 文章与精选</div>
+
+        <!-- 文章 1（链接至你的 Star 仓库） -->
         <article class="article-card">
-            <div class="article-date">2026-08-13</div>
-            <h2 class="article-title"><a href="#">我的第一篇独立博客：为什么离开 CSDN？</a></h2>
-            <p class="article-summary">在 GitHub Pages 上搭建属于自己的无广告极简博客，记录纯粹的技术与思考...</p>
+            <div class="article-meta">
+                <span class="article-tag">开源推荐</span>
+                <span>2026-08-10</span>
+                <span>• 推荐清单</span>
+            </div>
+            <h2 class="article-title">
+                <a href="https://github.com/Lswen7/My-Awesome-Stars" target="_blank">我的精选开源项目与工具推荐列表 ↗</a>
+            </h2>
+            <p class="article-summary">总结了近期个人收藏的各类高效开发工具、C# / .NET 优质 UI 控件库、网络代理以及 Windows 运维小工具汇编。</p>
         </article>
 
-        <!-- 文章列表 2 -->
+        <!-- 文章 2（预留示例） -->
         <article class="article-card">
-            <div class="article-date">2026-08-10</div>
+            <div class="article-meta">
+                <span class="article-tag">C# / .NET</span>
+                <span>2026-08-08</span>
+                <span>• 5 分钟阅读</span>
+            </div>
             <h2 class="article-title">
-    <a href="https://github.com/Lswen7/My-Awesome-Stars" target="_blank">我的精选开源项目与工具推荐列表</a>
-</h2>
-            <p class="article-summary">总结了我近期收藏的各类高效开发工具、C# / .NET 优质库以及 Windows 运维小工具。</p>
+                <a href="#">.NET 高性能编程思考：从 100ms 到 10ms 的优化实践</a>
+            </h2>
+            <p class="article-summary">探讨 C# 中 Span&lt;T&gt;、Memory&lt;T&gt; 与对象池机制在日常业务开发中的应用与性能提升实践...</p>
+        </article>
+
+        <!-- 文章 3（预留示例） -->
+        <article class="article-card">
+            <div class="article-meta">
+                <span class="article-tag">WPF 开发</span>
+                <span>2026-08-01</span>
+                <span>• 8 分钟阅读</span>
+            </div>
+            <h2 class="article-title">
+                <a href="#">WPF 现代化 UI 控件库选型与拖拽交互实践</a>
+            </h2>
+            <p class="article-summary">对比 AvalonDock、SunnyUI 与 Avalonia，聊聊在 C# 桌面端开发中如何打造流畅现代的 UI 交互体验。</p>
         </article>
     </main>
 
     <footer>
-        <p>© 2026 由 GitHub Pages 强力驱动 | 保持热爱，奔赴山海</p>
+        <p>© 2026 Swen's Blog | 由 GitHub Pages 强力驱动 | 保持热爱，奔赴山海</p>
     </footer>
 
 </body>
