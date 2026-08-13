@@ -37,6 +37,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
         h1 { 
@@ -71,7 +73,8 @@
 
         .nav-links {
             display: flex;
-            gap: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .btn-link {
@@ -86,6 +89,7 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 500;
+            cursor: pointer;
             transition: all 0.2s ease;
         }
 
@@ -93,6 +97,17 @@
             border-color: var(--accent-color);
             color: var(--accent-color);
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* 新增：打招呼高亮按钮样式 */
+        .btn-highlight {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+        }
+        .btn-highlight:hover {
+            background: #238636;
+            color: white;
         }
 
         /* 文章卡片 */
@@ -159,6 +174,49 @@
             margin: 0;
         }
 
+        /* ✨ 弹窗样式 (Modal) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            padding: 32px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 420px;
+            width: 85%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            animation: popIn 0.25s ease-out;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-card h2 { margin-top: 0; font-size: 1.5rem; color: var(--text-main); }
+        .modal-card p { color: var(--text-muted); margin: 12px 0 24px 0; line-height: 1.6; }
+        .modal-close-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .modal-close-btn:hover { background: #238636; }
+
         footer {
             margin-top: 60px;
             text-align: center;
@@ -175,6 +233,8 @@
         <div class="header-top">
             <h1>👋 嗨，我是 Swen</h1>
             <div class="nav-links">
+                <!-- ✨ 新增打招呼按钮 -->
+                <button onclick="openWelcomeModal()" class="btn-link btn-highlight">✨ 打个招呼</button>
                 <a href="https://github.com/Lswen7" target="_blank" class="btn-link">💻 GitHub</a>
                 <a href="https://github.com/Lswen7/My-Awesome-Stars" target="_blank" class="btn-link">⭐ 开源收藏</a>
             </div>
@@ -235,31 +295,57 @@
             <p class="article-summary">对比 AvalonDock、SunnyUI 与 Avalonia，聊聊在 C# 桌面端开发中如何打造流畅现代的 UI 交互体验。</p>
         </article>
     </main>
-<!-- Giscus 评论区开始 -->
-        <div style="margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 30px;">
-            <h3 style="margin-bottom: 20px;">💬 评论与交流</h3>
-            
-            <!-- 这里粘贴从 giscus.app 复制的那一串脚本代码 -->
-           <script src="https://giscus.app/client.js"
-        data-repo="lswen7/lswen7.github.io"
-        data-repo-id="R_kgDOT3b12A"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOT3b12M4DDTJw"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
-</script>
+
+    <!-- Giscus 评论区开始 -->
+    <div style="margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 30px;">
+        <h3 style="margin-bottom: 20px;">💬 评论与交流</h3>
+        
+        <script src="https://giscus.app/client.js"
+                data-repo="lswen7/lswen7.github.io"
+                data-repo-id="R_kgDOT3b12A"
+                data-category="Announcements"
+                data-category-id="DIC_kwDOT3b12M4DDTJw"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="bottom"
+                data-theme="preferred_color_scheme"
+                data-lang="zh-CN"
+                crossorigin="anonymous"
+                async>
+        </script>
+    </div>
+    <!-- Giscus 评论区结束 -->
+
+    <!-- ✨ 欢迎弹窗部分 -->
+    <div id="welcomeModal" class="modal-overlay" onclick="closeModalOnBgClick(event)">
+        <div class="modal-card">
+            <h2>🎉 欢迎光临我的空间！</h2>
+            <p>我是 Swen，一名 C# / .NET 开发者。<br>很高兴你能来到这里！保持热爱，奔赴山海 ✨</p>
+            <button onclick="closeWelcomeModal()" class="modal-close-btn">收到啦 👋</button>
         </div>
-        <!-- Giscus 评论区结束 -->
+    </div>
+
     <footer>
         <p>© 2026 Swen's Blog | 由 GitHub Pages 强力驱动 | 保持热爱，奔赴山海</p>
     </footer>
 
+    <!-- JS 逻辑控制 -->
+    <script>
+        function openWelcomeModal() {
+            document.getElementById('welcomeModal').style.display = 'flex';
+        }
+
+        function closeWelcomeModal() {
+            document.getElementById('welcomeModal').style.display = 'none';
+        }
+
+        function closeModalOnBgClick(event) {
+            if (event.target.id === 'welcomeModal') {
+                closeWelcomeModal();
+            }
+        }
+    </script>
 </body>
 </html>
