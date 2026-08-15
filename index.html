@@ -6,28 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swen 的个人博客 & 知识库</title>
     <base href="/" />
-    <link href="_framework/dotnet.u0eytaczwz.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-fqBtpJceaA09k75ePrzyCoZch7CK1Ob0lrGGlHUQPQ4=" />
+    <link href="_framework/dotnet.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-cZa7S1qtsrnpqZeGL5Vr3d6kfqVHD6GuXAU77GUNc7U=" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <link href="Swen.styles.css" rel="stylesheet" />
     <script type="importmap">{
   "imports": {
-    "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.w3qd1tpl0e.js",
-    "./_framework/dotnet.native.js": "./_framework/dotnet.native.vzj2a6aakt.js",
-    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.zbexyp8zrs.js",
-    "./_framework/dotnet.js": "./_framework/dotnet.u0eytaczwz.js"
+    "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.w3qd1tpl0e.js"
   },
   "scopes": {},
   "integrity": {
     "./_framework/blazor.webassembly.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
-    "./_framework/blazor.webassembly.w3qd1tpl0e.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
-    "./_framework/dotnet.js": "sha256-fqBtpJceaA09k75ePrzyCoZch7CK1Ob0lrGGlHUQPQ4=",
-    "./_framework/dotnet.native.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
-    "./_framework/dotnet.native.vzj2a6aakt.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
-    "./_framework/dotnet.runtime.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40=",
-    "./_framework/dotnet.runtime.zbexyp8zrs.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40=",
-    "./_framework/dotnet.u0eytaczwz.js": "sha256-fqBtpJceaA09k75ePrzyCoZch7CK1Ob0lrGGlHUQPQ4="
+    "./_framework/blazor.webassembly.w3qd1tpl0e.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4="
   }
 }</script>
 </head>
@@ -47,27 +38,35 @@
         <span class="dismiss">🗙</span>
     </div>
 
-    <!-- 找到最底部的 blazor.webassembly.js 这一行 -->
+    <!-- ⚠️ 核心！Blazor WASM 运行环境启动脚本（必不可少） -->
     <script src="_framework/blazor.webassembly.js"></script>
 
-    <!-- ✨ 评论区写在 wwwroot/index.html 文件里！ -->
-    <div style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
-        <script src="https://giscus.app/client.js"
-                data-repo="lswen7/lswen7.github.io"
-                data-repo-id="R_kgDOT3b12A"
-                data-category="Announcements"
-                data-category-id="DIC_kwDOT3b12M4DDTJw"
-                data-mapping="pathname"
-                data-strict="0"
-                data-reactions-enabled="1"
-                data-emit-metadata="0"
-                data-input-position="bottom"
-                data-theme="preferred_color_scheme"
-                data-lang="zh-CN"
-                crossorigin="anonymous"
-                async>
-        </script>
-    </div>
+    <!-- Giscus 评论区脚本引擎 -->
+    <script>
+        window.initGiscus = function () {
+            var container = document.getElementById('giscus-container');
+            if (!container) return;
+            container.innerHTML = ''; // 清理旧评论框
 
+            var script = document.createElement('script');
+            script.src = 'https://giscus.app/client.js';
+            script.setAttribute('data-repo', 'lswen7/lswen7.github.io');
+            script.setAttribute('data-repo-id', 'R_kgDOT3b12A');
+            script.setAttribute('data-category', 'Announcements');
+            script.setAttribute('data-category-id', 'DIC_kwDOT3b12M4DDTJw');
+            script.setAttribute('data-mapping', 'pathname');
+            script.setAttribute('data-strict', '0');
+            script.setAttribute('data-reactions-enabled', '1');
+            script.setAttribute('data-emit-metadata', '0');
+            script.setAttribute('data-input-position', 'bottom');
+            script.setAttribute('data-theme', 'light');
+            script.setAttribute('data-lang', 'zh-CN');
+            script.crossOrigin = 'anonymous';
+            script.async = true;
+
+            container.appendChild(script);
+        };
+    </script>
 </body>
+
 </html>
