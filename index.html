@@ -1,351 +1,52 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swen 的个人博客 & 知识库</title>
-    <style>
-        :root {
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-main: #212529;
-            --text-muted: #6c757d;
-            --accent-color: #2da44e;
-            --tag-bg: #e9ecef;
-            --border-color: #e9ecef;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            max-width: 840px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            line-height: 1.7;
-        }
-
-        /* 顶部导航与 Header */
-        header {
-            margin-bottom: 40px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 24px;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        h1 { 
-            font-size: 2.2rem; 
-            margin: 0; 
-            font-weight: 700; 
-        }
-
-        .subtitle { 
-            color: var(--text-muted); 
-            font-size: 1.05rem; 
-            margin-top: 8px;
-            margin-bottom: 16px;
-        }
-
-        /* 个人标签 & 社交按钮 */
-        .tech-tags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 16px;
-        }
-
-        .tech-badge {
-            font-size: 0.8rem;
-            background: var(--tag-bg);
-            color: #495057;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-weight: 500;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .btn-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9rem;
-            color: var(--text-main);
-            background: #ffffff;
-            border: 1px solid #ced4da;
-            padding: 6px 14px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-link:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        /* 新增：打招呼高亮按钮样式 */
-        .btn-highlight {
-            background: var(--accent-color);
-            color: white;
-            border: none;
-        }
-        .btn-highlight:hover {
-            background: #238636;
-            color: white;
-        }
-
-        /* 文章卡片 */
-        .section-title {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .article-card {
-            background: var(--card-bg);
-            padding: 24px 28px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            border: 1px solid rgba(0,0,0,0.03);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .article-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-        }
-
-        .article-meta {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        .article-tag {
-            background: #e6f4ea;
-            color: var(--accent-color);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.78rem;
-            font-weight: 600;
-        }
-
-        .article-title { 
-            font-size: 1.35rem; 
-            margin: 0 0 10px 0; 
-        }
-
-        .article-title a { 
-            color: var(--text-main); 
-            text-decoration: none; 
-            font-weight: 600; 
-        }
-
-        .article-title a:hover { 
-            color: var(--accent-color); 
-        }
-
-        .article-summary { 
-            color: #495057; 
-            font-size: 0.98rem; 
-            margin: 0;
-        }
-
-        /* ✨ 弹窗样式 (Modal) */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal-card {
-            background: #ffffff;
-            padding: 32px;
-            border-radius: 16px;
-            text-align: center;
-            max-width: 420px;
-            width: 85%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            animation: popIn 0.25s ease-out;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0.85); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .modal-card h2 { margin-top: 0; font-size: 1.5rem; color: var(--text-main); }
-        .modal-card p { color: var(--text-muted); margin: 12px 0 24px 0; line-height: 1.6; }
-        .modal-close-btn {
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-        .modal-close-btn:hover { background: #238636; }
-
-        footer {
-            margin-top: 60px;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            padding-top: 24px;
-        }
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwenBlog</title>
+    <base href="/" />
+    <link href="_framework/dotnet.nz6jjfqiai.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-3aYxZXNKH+eLh/dmEIK5KhsH7uWiHHyZnScUuc/12Po=" />
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="SwenBlog.styles.css" rel="stylesheet" />
+    <script type="importmap">{
+  "imports": {
+    "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.w3qd1tpl0e.js",
+    "./_framework/dotnet.native.js": "./_framework/dotnet.native.vzj2a6aakt.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.nz6jjfqiai.js",
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.zbexyp8zrs.js"
+  },
+  "scopes": {},
+  "integrity": {
+    "./_framework/blazor.webassembly.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
+    "./_framework/blazor.webassembly.w3qd1tpl0e.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
+    "./_framework/dotnet.js": "sha256-3aYxZXNKH+eLh/dmEIK5KhsH7uWiHHyZnScUuc/12Po=",
+    "./_framework/dotnet.native.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
+    "./_framework/dotnet.native.vzj2a6aakt.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
+    "./_framework/dotnet.nz6jjfqiai.js": "sha256-3aYxZXNKH+eLh/dmEIK5KhsH7uWiHHyZnScUuc/12Po=",
+    "./_framework/dotnet.runtime.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40=",
+    "./_framework/dotnet.runtime.zbexyp8zrs.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40="
+  }
+}</script>
 </head>
+
 <body>
-
-    <header>
-        <div class="header-top">
-            <h1>👋 嗨，我是 Swen</h1>
-            <div class="nav-links">
-                <!-- ✨ 新增打招呼按钮 -->
-                <button onclick="openWelcomeModal()" class="btn-link btn-highlight">✨ 打个招呼</button>
-                <a href="stars.html"  class="btn-link">⭐ 资源导航</a>
-                <a href="https://github.com/Lswen7" target="_blank" class="btn-link">💻 GitHub</a>
-            </div>
-        </div>
-        
-        <p class="subtitle">专注于 .NET / C# 开发 | 记录技术、思考与折腾 | 独立博客</p>
-
-        <!-- 技能标签 -->
-        <div class="tech-tags">
-            <span class="tech-badge">C#</span>
-            <span class="tech-badge">.NET Core</span>
-            <span class="tech-badge">WPF</span>
-            <span class="tech-badge">WinForms</span>
-            <span class="tech-badge">SQL</span>
-            <span class="tech-badge">开源工具</span>
-        </div>
-    </header>
-
-    <main>
-        <div class="section-title">📌 文章与精选</div>
-
-        <!-- 文章 1（链接至你的 Star 仓库） -->
-        <article class="article-card">
-            <div class="article-meta">
-                <span class="article-tag">开源推荐</span>
-                <span>2026-08-10</span>
-                <span>• 推荐清单</span>
-            </div>
-            <h2 class="article-title">
-                <a href="https://github.com/Lswen7/My-Awesome-Stars" target="_blank">我的精选开源项目与工具推荐列表 ↗</a>
-            </h2>
-            <p class="article-summary">总结了近期个人收藏的各类高效开发工具、C# / .NET 优质 UI 控件库、网络代理以及 Windows 运维小工具汇编。</p>
-        </article>
-
-        <!-- 文章 2（预留示例） -->
-        <article class="article-card">
-            <div class="article-meta">
-                <span class="article-tag">C# / .NET</span>
-                <span>2026-08-08</span>
-                <span>• 5 分钟阅读</span>
-            </div>
-            <h2 class="article-title">
-                <a href="#">.NET 高性能编程思考：从 100ms 到 10ms 的优化实践</a>
-            </h2>
-            <p class="article-summary">探讨 C# 中 Span&lt;T&gt;、Memory&lt;T&gt; 与对象池机制在日常业务开发中的应用与性能提升实践...</p>
-        </article>
-
-        <!-- 文章 3（预留示例） -->
-        <article class="article-card">
-            <div class="article-meta">
-                <span class="article-tag">WPF 开发</span>
-                <span>2026-08-01</span>
-                <span>• 8 分钟阅读</span>
-            </div>
-            <h2 class="article-title">
-                <a href="#">WPF 现代化 UI 控件库选型与拖拽交互实践</a>
-            </h2>
-            <p class="article-summary">对比 AvalonDock、SunnyUI 与 Avalonia，聊聊在 C# 桌面端开发中如何打造流畅现代的 UI 交互体验。</p>
-        </article>
-    </main>
-
-    <!-- Giscus 评论区开始 -->
-    <div style="margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 30px;">
-        <h3 style="margin-bottom: 20px;">💬 评论与交流</h3>
-        
-        <script src="https://giscus.app/client.js"
-                data-repo="lswen7/lswen7.github.io"
-                data-repo-id="R_kgDOT3b12A"
-                data-category="Announcements"
-                data-category-id="DIC_kwDOT3b12M4DDTJw"
-                data-mapping="pathname"
-                data-strict="0"
-                data-reactions-enabled="1"
-                data-emit-metadata="0"
-                data-input-position="bottom"
-                data-theme="preferred_color_scheme"
-                data-lang="zh-CN"
-                crossorigin="anonymous"
-                async>
-        </script>
-    </div>
-    <!-- Giscus 评论区结束 -->
-
-    <!-- ✨ 欢迎弹窗部分 -->
-    <div id="welcomeModal" class="modal-overlay" onclick="closeModalOnBgClick(event)">
-        <div class="modal-card">
-            <h2>🎉 欢迎光临我的空间！</h2>
-            <p>我是 Swen，一名 C# / .NET 开发者。<br>很高兴你能来到这里！保持热爱，奔赴山海 ✨</p>
-            <button onclick="closeWelcomeModal()" class="modal-close-btn">收到啦 👋</button>
-        </div>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
     </div>
 
-    <footer>
-        <p>© 2026 Swen's Blog | 由 GitHub Pages 强力驱动 | 保持热爱，奔赴山海</p>
-    </footer>
-
-    <!-- JS 逻辑控制 -->
-    <script>
-        function openWelcomeModal() {
-            document.getElementById('welcomeModal').style.display = 'flex';
-        }
-
-        function closeWelcomeModal() {
-            document.getElementById('welcomeModal').style.display = 'none';
-        }
-
-        function closeModalOnBgClick(event) {
-            if (event.target.id === 'welcomeModal') {
-                closeWelcomeModal();
-            }
-        }
-    </script>
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+    <script src="_framework/blazor.webassembly.w3qd1tpl0e.js"></script>
 </body>
+
 </html>
