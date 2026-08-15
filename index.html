@@ -1,24 +1,33 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Swen 的个人博客 & 知识库</title>
+    <title>Swen</title>
     <base href="/" />
-    <link href="_framework/dotnet.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-vLI8NtHj58+dVjwYIn9VYe9EzB5H62ze1RscL4reom0=" />
+    <link href="_framework/dotnet.lb4b8qtycc.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-oepuSzGD4uBiRcrWKnVglQh9YF5KHrty8jNQgOjdE2A=" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <link href="Swen.styles.css" rel="stylesheet" />
     <script type="importmap">{
   "imports": {
-    "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.w3qd1tpl0e.js"
+    "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.w3qd1tpl0e.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.lb4b8qtycc.js",
+    "./_framework/dotnet.native.js": "./_framework/dotnet.native.vzj2a6aakt.js",
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.zbexyp8zrs.js"
   },
   "scopes": {},
   "integrity": {
     "./_framework/blazor.webassembly.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
-    "./_framework/blazor.webassembly.w3qd1tpl0e.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4="
+    "./_framework/blazor.webassembly.w3qd1tpl0e.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
+    "./_framework/dotnet.js": "sha256-oepuSzGD4uBiRcrWKnVglQh9YF5KHrty8jNQgOjdE2A=",
+    "./_framework/dotnet.lb4b8qtycc.js": "sha256-oepuSzGD4uBiRcrWKnVglQh9YF5KHrty8jNQgOjdE2A=",
+    "./_framework/dotnet.native.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
+    "./_framework/dotnet.native.vzj2a6aakt.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
+    "./_framework/dotnet.runtime.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40=",
+    "./_framework/dotnet.runtime.zbexyp8zrs.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40="
   }
 }</script>
 </head>
@@ -33,40 +42,11 @@
     </div>
 
     <div id="blazor-error-ui">
-        发生错误，请重试。
-        <a href="." class="reload">刷新</a>
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
         <span class="dismiss">🗙</span>
     </div>
-
-    <!-- ⚠️ 核心！Blazor WASM 运行环境启动脚本（必不可少） -->
-    <script src="_framework/blazor.webassembly.js"></script>
-
-    <!-- Giscus 评论区脚本引擎 -->
-    <!--<script>
-        window.initGiscus = function () {
-            var container = document.getElementById('giscus-container');
-            if (!container) return;
-            container.innerHTML = ''; // 清理旧评论框
-
-            var script = document.createElement('script');
-            script.src = 'https://giscus.app/client.js';
-            script.setAttribute('data-repo', 'lswen7/lswen7.github.io');
-            script.setAttribute('data-repo-id', 'R_kgDOT3b12A');
-            script.setAttribute('data-category', 'Announcements');
-            script.setAttribute('data-category-id', 'DIC_kwDOT3b12M4DDTJw');
-            script.setAttribute('data-mapping', 'pathname');
-            script.setAttribute('data-strict', '0');
-            script.setAttribute('data-reactions-enabled', '1');
-            script.setAttribute('data-emit-metadata', '0');
-            script.setAttribute('data-input-position', 'bottom');
-            script.setAttribute('data-theme', 'light');
-            script.setAttribute('data-lang', 'zh-CN');
-            script.crossOrigin = 'anonymous';
-            script.async = true;
-
-            container.appendChild(script);
-        };
-    </script>-->
+    <script src="_framework/blazor.webassembly.w3qd1tpl0e.js"></script>
 </body>
 
 </html>
