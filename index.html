@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swen</title>
     <base href="/" />
-    <link href="_framework/dotnet.08jnaojz74.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-EFsoROBhNjRsoxlwrG2tCWHkjb5+eWPkC9bMmLHB7CI=" />
+    <link href="_framework/dotnet.xsh7d6642n.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-H0Xcthc/C1WscV0O+1czKzHIeJk5QrL9E0m1fqGhBek=" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
@@ -17,20 +17,20 @@
     <script type="importmap">{
   "imports": {
     "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.w3qd1tpl0e.js",
-    "./_framework/dotnet.js": "./_framework/dotnet.08jnaojz74.js",
     "./_framework/dotnet.native.js": "./_framework/dotnet.native.vzj2a6aakt.js",
-    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.zbexyp8zrs.js"
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.zbexyp8zrs.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.xsh7d6642n.js"
   },
   "scopes": {},
   "integrity": {
     "./_framework/blazor.webassembly.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
     "./_framework/blazor.webassembly.w3qd1tpl0e.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
-    "./_framework/dotnet.08jnaojz74.js": "sha256-EFsoROBhNjRsoxlwrG2tCWHkjb5+eWPkC9bMmLHB7CI=",
-    "./_framework/dotnet.js": "sha256-EFsoROBhNjRsoxlwrG2tCWHkjb5+eWPkC9bMmLHB7CI=",
+    "./_framework/dotnet.js": "sha256-H0Xcthc/C1WscV0O+1czKzHIeJk5QrL9E0m1fqGhBek=",
     "./_framework/dotnet.native.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
     "./_framework/dotnet.native.vzj2a6aakt.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
     "./_framework/dotnet.runtime.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40=",
-    "./_framework/dotnet.runtime.zbexyp8zrs.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40="
+    "./_framework/dotnet.runtime.zbexyp8zrs.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40=",
+    "./_framework/dotnet.xsh7d6642n.js": "sha256-H0Xcthc/C1WscV0O+1czKzHIeJk5QrL9E0m1fqGhBek="
   }
 }</script>
     <!-- 不蒜子全网访问量/访客数统计脚本 -->
@@ -132,6 +132,101 @@
     <script src="_framework/blazor.webassembly.w3qd1tpl0e.js"></script>
     <!-- 引入 MudBlazor 动画与交互脚本 -->
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <!-- 科技感粒子蛛网磁吸背景特效 (canvas-nest.js) -->
+    <!--<script src="https://cdn.bootcdn.net/ajax/libs/canvas-nest.js/2.0.4/canvas-nest.js"
+            color="9,105,218"
+            opacity="0.55"
+            count="99"
+            zIndex="-1">
+    </script>-->
+    <!-- 100% 本地原生运行的科技感粒子蛛网磁吸背景特效 -->
+    <script>
+        (function () {
+            function createParticleCanvas() {
+                var canvas = document.createElement('canvas');
+                canvas.style.cssText = 'position:fixed;top:0;left:0;z-index:-1;opacity:0.75;pointer-events:none;';
+                document.body.appendChild(canvas);
+
+                var ctx = canvas.getContext('2d');
+                var width, height;
+
+                function resize() {
+                    width = canvas.width = window.innerWidth || document.documentElement.clientWidth;
+                    height = canvas.height = window.innerHeight || document.documentElement.clientHeight;
+                }
+                resize();
+                window.addEventListener('resize', resize);
+
+                var mouse = { x: null, y: null, max: 20000 };
+                window.addEventListener('mousemove', function (e) {
+                    mouse.x = e.clientX;
+                    mouse.y = e.clientY;
+                });
+                window.addEventListener('mouseout', function () {
+                    mouse.x = null;
+                    mouse.y = null;
+                });
+
+                var particles = [];
+                for (var i = 0; i < 90; i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        xa: (Math.random() * 2 - 1) * 0.8,
+                        ya: (Math.random() * 2 - 1) * 0.8,
+                        max: 6000
+                    });
+                }
+
+                var all = particles.concat([mouse]);
+
+                function draw() {
+                    ctx.clearRect(0, 0, width, height);
+
+                    particles.forEach(function (dot, idx) {
+                        dot.x += dot.xa;
+                        dot.y += dot.ya;
+
+                        dot.xa *= (dot.x > width || dot.x < 0) ? -1 : 1;
+                        dot.ya *= (dot.y > height || dot.y < 0) ? -1 : 1;
+
+                        ctx.fillStyle = '#0969da';
+                        ctx.fillRect(dot.x - 0.5, dot.y - 0.5, 2, 2);
+
+                        for (var i = idx + 1; i < all.length; i++) {
+                            var d = all[i];
+                            if (d.x !== null && d.y !== null) {
+                                var xc = dot.x - d.x;
+                                var yc = dot.y - d.y;
+                                var dis = xc * xc + yc * yc;
+
+                                if (dis < d.max) {
+                                    if (d === mouse && dis >= d.max / 2) {
+                                        dot.x -= xc * 0.03;
+                                        dot.y -= yc * 0.03;
+                                    }
+                                    var ratio = (d.max - dis) / d.max;
+                                    ctx.beginPath();
+                                    ctx.lineWidth = ratio / 2;
+                                    ctx.strokeStyle = 'rgba(45, 164, 78, ' + (ratio + 0.2) + ')';
+                                    ctx.moveTo(dot.x, dot.y);
+                                    ctx.lineTo(d.x, d.y);
+                                    ctx.stroke();
+                                }
+                            }
+                        }
+                    });
+                    requestAnimationFrame(draw);
+                }
+                draw();
+            }
+            if (document.readyState === 'complete') {
+                createParticleCanvas();
+            } else {
+                window.addEventListener('load', createParticleCanvas);
+            }
+        })();
+    </script>
 </body>
 
 </html>
