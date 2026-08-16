@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swen</title>
     <base href="/" />
-    <link href="_framework/dotnet.xsh7d6642n.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-H0Xcthc/C1WscV0O+1czKzHIeJk5QrL9E0m1fqGhBek=" />
+    <link href="_framework/dotnet.fa4joed9w6.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-d7wlhl5cyXYfIbtVKsluQbvJFOdmDzYdXt/0cVZ8nAE=" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
@@ -17,20 +17,20 @@
     <script type="importmap">{
   "imports": {
     "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.w3qd1tpl0e.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.fa4joed9w6.js",
     "./_framework/dotnet.native.js": "./_framework/dotnet.native.vzj2a6aakt.js",
-    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.zbexyp8zrs.js",
-    "./_framework/dotnet.js": "./_framework/dotnet.xsh7d6642n.js"
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.zbexyp8zrs.js"
   },
   "scopes": {},
   "integrity": {
     "./_framework/blazor.webassembly.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
     "./_framework/blazor.webassembly.w3qd1tpl0e.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
-    "./_framework/dotnet.js": "sha256-H0Xcthc/C1WscV0O+1czKzHIeJk5QrL9E0m1fqGhBek=",
+    "./_framework/dotnet.fa4joed9w6.js": "sha256-d7wlhl5cyXYfIbtVKsluQbvJFOdmDzYdXt/0cVZ8nAE=",
+    "./_framework/dotnet.js": "sha256-d7wlhl5cyXYfIbtVKsluQbvJFOdmDzYdXt/0cVZ8nAE=",
     "./_framework/dotnet.native.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
     "./_framework/dotnet.native.vzj2a6aakt.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
     "./_framework/dotnet.runtime.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40=",
-    "./_framework/dotnet.runtime.zbexyp8zrs.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40=",
-    "./_framework/dotnet.xsh7d6642n.js": "sha256-H0Xcthc/C1WscV0O+1czKzHIeJk5QrL9E0m1fqGhBek="
+    "./_framework/dotnet.runtime.zbexyp8zrs.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40="
   }
 }</script>
     <!-- 不蒜子全网访问量/访客数统计脚本 -->
@@ -39,89 +39,154 @@
 
 <body>
     <div id="app">
-        <!-- 高级极客风 Loading 样式 -->
+        <!-- 极致纯粹：仅保留全屏电光 + 闪电图标 + 霓虹标题 -->
         <style>
-            .loading-container {
+            .lightning-loader-wrapper {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                height: 100vh;
-                background-color: #f8f9fa;
+                background: #060911;
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                color: #212529;
+                user-select: none;
+                overflow: hidden;
+                z-index: 9999;
             }
 
-            .loading-logo {
-                font-size: 3.2rem;
-                margin-bottom: 16px;
-                animation: pulseLogo 1.6s infinite ease-in-out;
+            #lightningCanvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+            }
+
+            /* 纯透明文字容器：去掉了毛玻璃、边框、背景与阴影 */
+            .loading-content {
+                position: relative;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+            }
+
+            .lightning-icon {
+                font-size: 4.5rem;
+                margin-bottom: 12px;
+                filter: drop-shadow(0 0 20px #ffd700);
+                animation: electricPulse 0.7s infinite alternate ease-in-out;
             }
 
             .loading-title {
-                font-size: 1.25rem;
-                font-weight: 700;
-                color: #1f2328;
-                margin-bottom: 6px;
-                letter-spacing: 0.5px;
+                font-size: 2rem;
+                font-weight: 800;
+                color: #ffffff;
+                text-shadow: 0 0 16px rgba(0, 243, 255, 1), 0 0 30px rgba(0, 243, 255, 0.6);
+                letter-spacing: 3px;
             }
 
-            .loading-sub {
-                font-size: 0.88rem;
-                color: #6c757d;
-                margin-bottom: 24px;
-            }
-
-            /* 极速流光进度条 */
-            .loading-progress-bar {
-                width: 220px;
-                height: 4px;
-                background-color: #e9ecef;
-                border-radius: 4px;
-                overflow: hidden;
-                position: relative;
-            }
-
-            .loading-progress-value {
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, #2da44e, #0969da);
-                border-radius: 4px;
-                animation: loadingSlide 1.2s infinite ease-in-out;
-                transform-origin: 0% 50%;
-            }
-
-            @keyframes pulseLogo {
-                0%, 100% {
-                    transform: scale(1);
-                    opacity: 1;
-                }
-
-                50% {
-                    transform: scale(1.12);
-                    opacity: 0.8;
-                }
-            }
-
-            @keyframes loadingSlide {
+            @keyframes electricPulse {
                 0% {
-                    transform: translateX(-100%);
+                    transform: scale(0.95);
+                    filter: drop-shadow(0 0 10px #ffd700);
                 }
 
                 100% {
-                    transform: translateX(100%);
+                    transform: scale(1.15);
+                    filter: drop-shadow(0 0 35px #ffd700);
                 }
             }
         </style>
 
-        <div class="loading-container">
-            <div class="loading-logo">⚡</div>
-            <div class="loading-title">Swen 的技术空间</div>
-            <div class="loading-sub">正在初始化 .NET WebAssembly 引擎...</div>
-            <div class="loading-progress-bar">
-                <div class="loading-progress-value"></div>
+        <div class="lightning-loader-wrapper">
+            <canvas id="lightningCanvas"></canvas>
+            <div class="loading-content">
+                <div class="lightning-icon">⚡</div>
+                <div class="loading-title">Swen 的技术空间</div>
             </div>
         </div>
+
+        <!-- 实时电光流动生成算法脚本 -->
+        <script>
+            (function () {
+                var canvas = document.getElementById('lightningCanvas');
+                if (!canvas) return;
+                var ctx = canvas.getContext('2d');
+                var width, height;
+
+                function resize() {
+                    width = canvas.width = window.innerWidth;
+                    height = canvas.height = window.innerHeight;
+                }
+                resize();
+                window.addEventListener('resize', resize);
+
+                function createLightningPath(x1, y1, x2, y2, displacement) {
+                    if (displacement < 3) {
+                        ctx.beginPath();
+                        ctx.moveTo(x1, y1);
+                        ctx.lineTo(x2, y2);
+                        ctx.stroke();
+                        return;
+                    }
+                    var midX = (x1 + x2) / 2 + (Math.random() - 0.5) * displacement;
+                    var midY = (y1 + y2) / 2 + (Math.random() - 0.5) * displacement;
+                    createLightningPath(x1, y1, midX, midY, displacement / 2);
+                    createLightningPath(midX, midY, x2, y2, displacement / 2);
+
+                    if (Math.random() < 0.2) {
+                        var branchX = midX + (Math.random() - 0.5) * displacement;
+                        var branchY = midY + (Math.random() - 0.5) * displacement;
+                        createLightningPath(midX, midY, branchX, branchY, displacement / 3);
+                    }
+                }
+
+                function drawLightning() {
+                    ctx.clearRect(0, 0, width, height);
+
+                    var grad = ctx.createRadialGradient(width / 2, height / 2, 50, width / 2, height / 2, width * 0.7);
+                    grad.addColorStop(0, 'rgba(0, 243, 255, 0.12)');
+                    grad.addColorStop(1, 'rgba(6, 9, 17, 0)');
+                    ctx.fillStyle = grad;
+                    ctx.fillRect(0, 0, width, height);
+
+                    var boltCount = Math.floor(Math.random() * 3) + 3;
+                    for (var i = 0; i < boltCount; i++) {
+                        var startX = width / 2 + (Math.random() - 0.5) * 100;
+                        var startY = height / 2 + (Math.random() - 0.5) * 100;
+
+                        var angle = Math.random() * Math.PI * 2;
+                        var distance = Math.max(width, height) * 0.85;
+                        var endX = startX + Math.cos(angle) * distance;
+                        var endY = startY + Math.sin(angle) * distance;
+
+                        ctx.strokeStyle = 'rgba(0, 243, 255, 0.85)';
+                        ctx.lineWidth = 2.5;
+                        ctx.shadowColor = '#00f3ff';
+                        ctx.shadowBlur = 20;
+                        createLightningPath(startX, startY, endX, endY, 110);
+
+                        ctx.strokeStyle = '#ffffff';
+                        ctx.lineWidth = 1.2;
+                        ctx.shadowColor = '#ffffff';
+                        ctx.shadowBlur = 8;
+                        createLightningPath(startX, startY, endX, endY, 110);
+                    }
+                    requestAnimationFrame(drawLightning);
+                }
+
+                drawLightning();
+            })();
+        </script>
     </div>
 
     <div id="blazor-error-ui">
