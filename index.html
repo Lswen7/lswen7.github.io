@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swen</title>
     <base href="/" />
-    <link href="_framework/dotnet.qygrf3pydi.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-XgbqA39q2ivsgKuaxaTVHgodo964mNLNF8UabUgRhGk=" />
+    <link href="_framework/dotnet.z34saj8j6n.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-MUbosCCoqOPgkh54XBkkqRepy7zxwIx8Sd/sLPXi9Sw=" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
@@ -18,19 +18,19 @@
   "imports": {
     "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.w3qd1tpl0e.js",
     "./_framework/dotnet.native.js": "./_framework/dotnet.native.vzj2a6aakt.js",
-    "./_framework/dotnet.js": "./_framework/dotnet.qygrf3pydi.js",
-    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.zbexyp8zrs.js"
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.zbexyp8zrs.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.z34saj8j6n.js"
   },
   "scopes": {},
   "integrity": {
     "./_framework/blazor.webassembly.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
     "./_framework/blazor.webassembly.w3qd1tpl0e.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
-    "./_framework/dotnet.js": "sha256-XgbqA39q2ivsgKuaxaTVHgodo964mNLNF8UabUgRhGk=",
+    "./_framework/dotnet.js": "sha256-MUbosCCoqOPgkh54XBkkqRepy7zxwIx8Sd/sLPXi9Sw=",
     "./_framework/dotnet.native.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
     "./_framework/dotnet.native.vzj2a6aakt.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
-    "./_framework/dotnet.qygrf3pydi.js": "sha256-XgbqA39q2ivsgKuaxaTVHgodo964mNLNF8UabUgRhGk=",
     "./_framework/dotnet.runtime.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40=",
-    "./_framework/dotnet.runtime.zbexyp8zrs.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40="
+    "./_framework/dotnet.runtime.zbexyp8zrs.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40=",
+    "./_framework/dotnet.z34saj8j6n.js": "sha256-MUbosCCoqOPgkh54XBkkqRepy7zxwIx8Sd/sLPXi9Sw="
   }
 }</script>
     <!-- 不蒜子全网访问量/访客数统计脚本 -->
@@ -39,9 +39,9 @@
 
 <body>
     <div id="app">
-        <!-- 极致纯粹：仅保留全屏电光 + 闪电图标 + 霓虹标题 -->
+        <!-- Google AI Studio 风格：极简居中标题 + 谷歌 4 色渐变加长流光横线 -->
         <style>
-            .lightning-loader-wrapper {
+            .google-loader-wrapper {
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -51,142 +51,58 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                background: #060911;
+                background-color: #ffffff;
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
                 user-select: none;
-                overflow: hidden;
                 z-index: 9999;
             }
 
-            #lightningCanvas {
-                position: absolute;
-                top: 0;
-                left: 0;
+            .google-loader-title {
+                font-size: 1.35rem;
+                font-weight: 600;
+                color: #1f2328;
+                letter-spacing: 1px;
+                margin-bottom: 24px;
+            }
+
+            /* 460px 加长版进度条容器（自动兼容手机屏幕） */
+            .google-progress-bar {
+                width: 460px;
+                max-width: 85vw;
+                height: 3px;
+                background-color: #f0f2f5;
+                border-radius: 4px;
+                overflow: hidden;
+                position: relative;
+            }
+
+            /* 谷歌 4 色彩虹渐变 (蓝 -> 紫 -> 红 -> 黄 -> 绿) 流动效果 */
+            .google-progress-fill {
                 width: 100%;
                 height: 100%;
-                z-index: 1;
+                background: linear-gradient(90deg, #4285f4, #9b51e0, #ea4335, #fbbc05, #34a853, #4285f4);
+                background-size: 200% 100%;
+                animation: googleRainbow 1.4s infinite linear;
+                border-radius: 4px;
             }
 
-            /* 纯透明文字容器：去掉了毛玻璃、边框、背景与阴影 */
-            .loading-content {
-                position: relative;
-                z-index: 2;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                background: transparent;
-                border: none;
-                box-shadow: none;
-            }
-
-            .lightning-icon {
-                font-size: 4.5rem;
-                margin-bottom: 12px;
-                filter: drop-shadow(0 0 20px #ffd700);
-                animation: electricPulse 0.7s infinite alternate ease-in-out;
-            }
-
-            .loading-title {
-                font-size: 2rem;
-                font-weight: 800;
-                color: #ffffff;
-                text-shadow: 0 0 16px rgba(0, 243, 255, 1), 0 0 30px rgba(0, 243, 255, 0.6);
-                letter-spacing: 3px;
-            }
-
-            @keyframes electricPulse {
+            @keyframes googleRainbow {
                 0% {
-                    transform: scale(0.95);
-                    filter: drop-shadow(0 0 10px #ffd700);
+                    background-position: 100% 0;
                 }
 
                 100% {
-                    transform: scale(1.15);
-                    filter: drop-shadow(0 0 35px #ffd700);
+                    background-position: -100% 0;
                 }
             }
         </style>
 
-        <div class="lightning-loader-wrapper">
-            <canvas id="lightningCanvas"></canvas>
-            <div class="loading-content">
-                <div class="lightning-icon">⚡</div>
-                <div class="loading-title">Swen 的技术空间</div>
+        <div class="google-loader-wrapper">
+            <div class="google-loader-title">Swen's Space</div>
+            <div class="google-progress-bar">
+                <div class="google-progress-fill"></div>
             </div>
         </div>
-
-        <!-- 实时电光流动生成算法脚本 -->
-        <script>
-            (function () {
-                var canvas = document.getElementById('lightningCanvas');
-                if (!canvas) return;
-                var ctx = canvas.getContext('2d');
-                var width, height;
-
-                function resize() {
-                    width = canvas.width = window.innerWidth;
-                    height = canvas.height = window.innerHeight;
-                }
-                resize();
-                window.addEventListener('resize', resize);
-
-                function createLightningPath(x1, y1, x2, y2, displacement) {
-                    if (displacement < 3) {
-                        ctx.beginPath();
-                        ctx.moveTo(x1, y1);
-                        ctx.lineTo(x2, y2);
-                        ctx.stroke();
-                        return;
-                    }
-                    var midX = (x1 + x2) / 2 + (Math.random() - 0.5) * displacement;
-                    var midY = (y1 + y2) / 2 + (Math.random() - 0.5) * displacement;
-                    createLightningPath(x1, y1, midX, midY, displacement / 2);
-                    createLightningPath(midX, midY, x2, y2, displacement / 2);
-
-                    if (Math.random() < 0.2) {
-                        var branchX = midX + (Math.random() - 0.5) * displacement;
-                        var branchY = midY + (Math.random() - 0.5) * displacement;
-                        createLightningPath(midX, midY, branchX, branchY, displacement / 3);
-                    }
-                }
-
-                function drawLightning() {
-                    ctx.clearRect(0, 0, width, height);
-
-                    var grad = ctx.createRadialGradient(width / 2, height / 2, 50, width / 2, height / 2, width * 0.7);
-                    grad.addColorStop(0, 'rgba(0, 243, 255, 0.12)');
-                    grad.addColorStop(1, 'rgba(6, 9, 17, 0)');
-                    ctx.fillStyle = grad;
-                    ctx.fillRect(0, 0, width, height);
-
-                    var boltCount = Math.floor(Math.random() * 3) + 3;
-                    for (var i = 0; i < boltCount; i++) {
-                        var startX = width / 2 + (Math.random() - 0.5) * 100;
-                        var startY = height / 2 + (Math.random() - 0.5) * 100;
-
-                        var angle = Math.random() * Math.PI * 2;
-                        var distance = Math.max(width, height) * 0.85;
-                        var endX = startX + Math.cos(angle) * distance;
-                        var endY = startY + Math.sin(angle) * distance;
-
-                        ctx.strokeStyle = 'rgba(0, 243, 255, 0.85)';
-                        ctx.lineWidth = 2.5;
-                        ctx.shadowColor = '#00f3ff';
-                        ctx.shadowBlur = 20;
-                        createLightningPath(startX, startY, endX, endY, 110);
-
-                        ctx.strokeStyle = '#ffffff';
-                        ctx.lineWidth = 1.2;
-                        ctx.shadowColor = '#ffffff';
-                        ctx.shadowBlur = 8;
-                        createLightningPath(startX, startY, endX, endY, 110);
-                    }
-                    requestAnimationFrame(drawLightning);
-                }
-
-                drawLightning();
-            })();
-        </script>
     </div>
 
     <div id="blazor-error-ui">
