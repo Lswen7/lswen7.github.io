@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swen</title>
     <base href="/" />
-    <link href="_framework/dotnet.xw0otoeonv.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-oZdzS19R94U68NgZnpthleQzmcUC5uXRTr664lKHAO4=" />
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="_framework/dotnet.vfzq4063pc.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-69lHsLw+sxJhxJ2sV9ri2Ogh+4B3cktMxu2AbwARLXo=" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <link href="Swen.styles.css" rel="stylesheet" />
@@ -19,22 +18,20 @@
     "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.w3qd1tpl0e.js",
     "./_framework/dotnet.native.js": "./_framework/dotnet.native.vzj2a6aakt.js",
     "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.zbexyp8zrs.js",
-    "./_framework/dotnet.js": "./_framework/dotnet.xw0otoeonv.js"
+    "./_framework/dotnet.js": "./_framework/dotnet.vfzq4063pc.js"
   },
   "scopes": {},
   "integrity": {
     "./_framework/blazor.webassembly.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
     "./_framework/blazor.webassembly.w3qd1tpl0e.js": "sha256-lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4=",
-    "./_framework/dotnet.js": "sha256-oZdzS19R94U68NgZnpthleQzmcUC5uXRTr664lKHAO4=",
+    "./_framework/dotnet.js": "sha256-69lHsLw+sxJhxJ2sV9ri2Ogh+4B3cktMxu2AbwARLXo=",
     "./_framework/dotnet.native.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
     "./_framework/dotnet.native.vzj2a6aakt.js": "sha256-RezASHv+dbqV50cFnld76YiLhk4B+BjMAKs/euUdNyE=",
     "./_framework/dotnet.runtime.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40=",
     "./_framework/dotnet.runtime.zbexyp8zrs.js": "sha256-MZMguyke9CroSQl+L/SHIGFkPTD+LtYGXkXjAvwWx40=",
-    "./_framework/dotnet.xw0otoeonv.js": "sha256-oZdzS19R94U68NgZnpthleQzmcUC5uXRTr664lKHAO4="
+    "./_framework/dotnet.vfzq4063pc.js": "sha256-69lHsLw+sxJhxJ2sV9ri2Ogh+4B3cktMxu2AbwARLXo="
   }
 }</script>
-    <!-- 不蒜子全网访问量/访客数统计脚本 -->
-    <script async src="https://busuanzi.purewhite.space/busuanzi.pure.mini.js"></script>
 </head>
 
 <body>
@@ -110,18 +107,14 @@
         <a href="." class="reload">Reload</a>
         <span class="dismiss">🗙</span>
     </div>
-    <script src="_framework/blazor.webassembly.w3qd1tpl0e.js"></script>
+
+    <!-- Blazor WASM 核心运行脚本 -->
+    <script src="_framework/blazor.webassembly.js"></script>
     <!-- 引入 MudBlazor 动画与交互脚本 -->
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
-    <!-- 科技感粒子蛛网磁吸背景特效 (canvas-nest.js) -->
-    <!--<script src="https://cdn.bootcdn.net/ajax/libs/canvas-nest.js/2.0.4/canvas-nest.js"
-            color="9,105,218"
-            opacity="0.55"
-            count="99"
-            zIndex="-1">
-    </script>-->
-    <!-- 100% 本地原生运行的科技感粒子蛛网磁吸背景特效 -->
-    <script>
+
+    <!-- 1. 本地科技感粒子蛛网磁吸背景特效 -->
+    <!--<script>
         (function () {
             function createParticleCanvas() {
                 var canvas = document.createElement('canvas');
@@ -207,6 +200,193 @@
                 window.addEventListener('load', createParticleCanvas);
             }
         })();
+    </script>-->
+    <!-- 🌌 谷歌高鲜明度双模反重力·绚丽星辰引擎 (Ultra-Vivid Edition) -->
+    <script>
+        (function () {
+            var canvas, ctx, width, height;
+            var particles = [];
+            var particleCount = 120;
+            var isDarkMode = false;
+            var mouse = { x: -9999, y: -9999, radius: 140 };
+
+            // 🌙 极鲜艳暗黑霓虹（高饱和度、强发光感）
+            var darkColors = [
+                'rgba(56, 189, 248, ',   // ⚡ 电光青蓝 (Electric Cyan)
+                'rgba(217, 70, 239, ',   // 🔮 霓虹亮紫 (Neon Magenta)
+                'rgba(52, 211, 153, ',   // ❇️ 激光翠绿 (Cyber Emerald)
+                'rgba(251, 191, 36, ',   // ✨ 太阳金辉 (Solar Amber)
+                'rgba(255, 255, 255, '   // 💎 钻石纯白 (Pure Starlight)
+            ];
+
+            // ☀️ 极鲜艳亮色清透色卡（彻底摒弃脏灰色，高明度纯正彩宝色）
+            var lightColors = [
+                'rgba(26, 115, 232, ',   // 🔵 谷歌宝蓝 (Vivid Royal Blue)
+                'rgba(147, 51, 234, ',   // 🟣 纯正紫晶 (Vivid Amethyst)
+                'rgba(239, 68, 68, ',    // 🔴 日落暖红 (Sunset Coral)
+                'rgba(16, 185, 129, ',   // 🟢 碧玉翡翠 (Emerald Green)
+                'rgba(245, 158, 11, '    // 🟡 琥珀耀橙 (Vivid Amber)
+            ];
+
+            function initCanvas() {
+                canvas = document.createElement('canvas');
+                canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;';
+                document.body.appendChild(canvas);
+                ctx = canvas.getContext('2d');
+
+                resize();
+                window.addEventListener('resize', resize);
+                window.addEventListener('mousemove', function (e) {
+                    mouse.x = e.clientX;
+                    mouse.y = e.clientY;
+                });
+                window.addEventListener('mouseout', function () {
+                    mouse.x = -9999;
+                    mouse.y = -9999;
+                });
+
+                // 初始化微粒（提升粒子尺寸和初始亮度）
+                for (var i = 0; i < particleCount; i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        radius: Math.random() * 2.2 + 1.0, // 稍微加大尺寸，视觉更饱满
+                        colorIndex: Math.floor(Math.random() * 5),
+                        alpha: Math.random() * 0.35 + 0.65, // 提高基础不透明度，彻底告别发虚
+                        twinkleSpeed: Math.random() * 0.03 + 0.01,
+                        twinklePhase: Math.random() * Math.PI * 2,
+                        vx: (Math.random() - 0.5) * 0.28,
+                        vy: -(Math.random() * 0.45 + 0.18) // 向上反重力升腾
+                    });
+                }
+
+                render();
+            }
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+
+            function render() {
+                ctx.clearRect(0, 0, width, height);
+                var activeColors = isDarkMode ? darkColors : lightColors;
+
+                for (var i = 0; i < particles.length; i++) {
+                    var p = particles[i];
+
+                    // 1. 动态闪烁计算（保证最低亮度不低于 0.45，始终鲜明）
+                    p.twinklePhase += p.twinkleSpeed;
+                    var dynamicAlpha = p.alpha + Math.sin(p.twinklePhase) * 0.2;
+                    if (dynamicAlpha < 0.45) dynamicAlpha = 0.45;
+                    if (dynamicAlpha > 0.98) dynamicAlpha = 0.98;
+
+                    // 2. 鼠标斥力互动
+                    var dx = p.x - mouse.x;
+                    var dy = p.y - mouse.y;
+                    var dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < mouse.radius) {
+                        var force = (mouse.radius - dist) / mouse.radius;
+                        var angle = Math.atan2(dy, dx);
+                        p.x += Math.cos(angle) * force * 3.5;
+                        p.y += Math.sin(angle) * force * 3.5;
+                    }
+
+                    // 3. 上浮
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.y < -10) { p.y = height + 10; p.x = Math.random() * width; }
+                    if (p.x < -10) p.x = width + 10;
+                    if (p.x > width + 10) p.x = -10;
+
+                    // 4. 绘制鲜艳微粒
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = activeColors[p.colorIndex] + dynamicAlpha + ')';
+
+                    // 暗黑模式赋予强霓虹发光，亮色模式保持晶莹高锐度
+                    if (isDarkMode) {
+                        ctx.shadowBlur = p.radius > 1.8 ? 12 : 6;
+                        ctx.shadowColor = activeColors[p.colorIndex] + '0.9)';
+                    } else {
+                        ctx.shadowBlur = 0;
+                    }
+                    ctx.fill();
+                }
+
+                requestAnimationFrame(render);
+            }
+
+            // 切换主题接口
+            window.setCanvasTheme = function (dark) {
+                isDarkMode = dark;
+            };
+
+            if (document.readyState === 'complete') {
+                initCanvas();
+            } else {
+                window.addEventListener('load', initCanvas);
+            }
+        })();
+    </script>
+    <!-- 2. Giscus 评论区动态挂载与主题切换支持 -->
+    <script>
+        window.initGiscus = function (containerId, repo, repoId, category, categoryId) {
+            var container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = '';
+
+            var script = document.createElement('script');
+            script.src = 'https://giscus.app/client.js';
+            script.setAttribute('data-repo', repo);
+            script.setAttribute('data-repo-id', repoId);
+            script.setAttribute('data-category', category);
+            script.setAttribute('data-category-id', categoryId);
+            script.setAttribute('data-mapping', 'pathname');
+            script.setAttribute('data-strict', '0');
+            script.setAttribute('data-reactions-enabled', '1');
+            script.setAttribute('data-emit-metadata', '0');
+            script.setAttribute('data-input-position', 'bottom');
+            script.setAttribute('data-theme', 'light');
+            script.setAttribute('data-lang', 'zh-CN');
+            script.setAttribute('crossorigin', 'anonymous');
+            script.async = true;
+            container.appendChild(script);
+        };
+
+        window.resetGiscus = function () {
+            var iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+                iframe.contentWindow.postMessage(
+                    { giscus: { setConfig: { term: location.pathname } } },
+                    'https://giscus.app'
+                );
+            }
+        };
+
+        window.setGiscusTheme = function (theme) {
+            var iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage(
+                    { giscus: { setConfig: { theme: theme } } },
+                    'https://giscus.app'
+                );
+            }
+        };
+    </script>
+
+    <!-- 3. 全站访客统计动态加载函数 (100% 兼容不蒜子 ID 的高速服务) -->
+    <script>
+        window.loadSiteCounter = function () {
+            var old = document.getElementById('site-counter-script');
+            if (old) old.remove();
+
+            var script = document.createElement('script');
+            script.id = 'site-counter-script';
+            script.src = 'https://events.vercount.one/js';
+            script.defer = true;
+            document.body.appendChild(script);
+        };
     </script>
 </body>
 
